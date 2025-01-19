@@ -1,10 +1,4 @@
-import {
-	SignedIn,
-	SignedOut,
-	SignInButton,
-	UserButton,
-	useUser,
-} from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import React from "react";
 
 const Navbar: React.FC = () => {

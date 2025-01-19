@@ -1,34 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
-import { IoMdLogOut } from "react-icons/io";
-import { useAuth, useSignUp } from "@clerk/clerk-react";
 
 const Sidebar: React.FC = () => {
-	const { signOut } = useAuth();
-	const { signUp, isLoaded } = useSignUp();
-
-	const handleSignOut = async () => {
-		try {
-			await signOut();
-			console.log("Signed out successfully");
-		} catch (error) {
-			console.error("Sign-out error:", error);
-		}
-	};
-
-	const handleSignUp = async (e) => {
-		e.preventDefault();
-		if (!isLoaded) return;
-
-		try {
-			await signUp.create({
-				redirectUrl: "/",
-			});
-		} catch (err) {
-			console.error(err);
-		}
-	};
 	return (
 		<div className="h-screen w-72  text-white bg-white flex  flex-col  rounded-xl border-r">
 			<div className="p-4 text-2xl font-bold flex justify-center">
