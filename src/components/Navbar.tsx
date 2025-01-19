@@ -1,41 +1,27 @@
+import {
+	SignedIn,
+	SignedOut,
+	SignInButton,
+	UserButton,
+	useUser,
+} from "@clerk/clerk-react";
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { ROUTES } from "../constants/routes";
 
-const Sidebar: React.FC = () => {
+const Navbar: React.FC = () => {
+	const { user } = useUser();
 	return (
-		<div className="h-screen w-64  text-white flex flex-col">
-			<div className="p-4 text-2xl font-bold ">
-				<img src="/logos/logo.png" alt="" />
+		<div className="navbar">
+			<div className="flex justify-between items-center ">
+				<div className="w-full flex justify-between items-center m-8">
+					<h1 className="text-3xl font-semibold ">
+						Good Afternoon {user?.firstName}
+					</h1>
+
+					{/* <h1 className="text-3xl font-bold mt-8">Good Afternoon Shailesh</h1> */}
+				</div>
 			</div>
-			<nav className="flex-grow p-4">
-				<ul className="space-y-2">
-					{Object.keys(ROUTES).map((key) => {
-						const routeKey = key as keyof typeof ROUTES;
-						return (
-							<li key={routeKey}>
-								<NavLink
-									to={ROUTES[routeKey].path}
-									className={({ isActive }) =>
-										`block p-2 rounded ${
-											isActive ? "bg-[#0c0e12] " : "hover:bg-gray-300"
-										} rounded-xl`
-									}
-								>
-									{ROUTES[routeKey].label}
-								</NavLink>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-			{/* <div className="p-4 border-t border-gray-700">
-				<button className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded">
-					Logout
-				</button>
-			</div> */}
 		</div>
 	);
 };
 
-export default Sidebar;
+export default Navbar;
